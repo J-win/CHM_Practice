@@ -1,0 +1,6 @@
+﻿  MyForm.cpp
+c:\users\xiaom\onedrive\desktop\practice_1\graph\myform.h(578): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\xiaom\onedrive\desktop\practice_1\graph\myform.h(657): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+  MyForm.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  MyForm.obj : юсэрЁєцхэ ьюфєы№ MSIL; фы  MSIL яюёыхфютрЄхы№эр  ъюьяюэютър юЄъы■ўхэр; т√яюыэ хЄё  яюыэр  ъюьяюэютър
+  Graph.vcxproj -> C:\Users\xiaom\OneDrive\Desktop\Practice_1\Graph\Debug\Graph.exe
