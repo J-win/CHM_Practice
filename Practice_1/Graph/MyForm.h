@@ -83,6 +83,10 @@ namespace Graph {
 	private: System::Windows::Forms::GroupBox^  groupBox1;
 	private: System::Windows::Forms::Label^  label21;
 	private: System::Windows::Forms::TextBox^  textBox9;
+	private: System::Windows::Forms::Label^  label22;
+	private: System::Windows::Forms::TextBox^  textBox10;
+	private: System::Windows::Forms::Button^  button2;
+
 
 
 
@@ -151,6 +155,9 @@ namespace Graph {
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->label21 = (gcnew System::Windows::Forms::Label());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -169,16 +176,13 @@ namespace Graph {
 			this->zedGraphControl1->ScrollMinY2 = 0;
 			this->zedGraphControl1->Size = System::Drawing::Size(668, 402);
 			this->zedGraphControl1->TabIndex = 0;
-			this->zedGraphControl1->GraphPane->XAxis->Title->Text = L"x";
-			this->zedGraphControl1->GraphPane->YAxis->Title->Text = L"u";
-			this->zedGraphControl1->GraphPane->Title->Text = L"График";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(325, 388);
+			this->button1->Location = System::Drawing::Point(298, 362);
 			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(60, 100);
+			this->button1->Size = System::Drawing::Size(100, 100);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Draw";
 			this->button1->UseVisualStyleBackColor = true;
@@ -195,7 +199,7 @@ namespace Graph {
 			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersVisible = false;
-			this->dataGridView1->Size = System::Drawing::Size(668, 331);
+			this->dataGridView1->Size = System::Drawing::Size(668, 373);
 			this->dataGridView1->TabIndex = 2;
 			// 
 			// X
@@ -397,7 +401,7 @@ namespace Graph {
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(21, 520);
+			this->checkBox1->Location = System::Drawing::Point(15, 576);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(129, 21);
 			this->checkBox1->TabIndex = 21;
@@ -503,7 +507,7 @@ namespace Graph {
 			this->groupBox1->Controls->Add(this->label15);
 			this->groupBox1->Controls->Add(this->label17);
 			this->groupBox1->Controls->Add(this->label14);
-			this->groupBox1->Location = System::Drawing::Point(21, 561);
+			this->groupBox1->Location = System::Drawing::Point(15, 603);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(281, 215);
 			this->groupBox1->TabIndex = 32;
@@ -527,11 +531,41 @@ namespace Graph {
 			this->textBox9->TabIndex = 34;
 			this->textBox9->Text = L"0,1";
 			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Location = System::Drawing::Point(18, 515);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(149, 34);
+			this->label22->TabIndex = 35;
+			this->label22->Text = L"Погрешность выхода\r\nна нижнюю границу u";
+			// 
+			// textBox10
+			// 
+			this->textBox10->Location = System::Drawing::Point(224, 527);
+			this->textBox10->Name = L"textBox10";
+			this->textBox10->Size = System::Drawing::Size(60, 22);
+			this->textBox10->TabIndex = 36;
+			this->textBox10->Text = L"0,1";
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(298, 483);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(100, 40);
+			this->button2->TabIndex = 37;
+			this->button2->Text = L"Clear";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1082, 785);
+			this->ClientSize = System::Drawing::Size(1082, 830);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->textBox10);
+			this->Controls->Add(this->label22);
 			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->label21);
 			this->Controls->Add(this->groupBox1);
@@ -588,10 +622,21 @@ private:
 		return (v + (h / 6) * (k1 + 4 * k2 + k3));
 	}
 
+	void print_dataGridView(int k, double x, double v, double h, double s, int c1, int c2)
+	{
+		dataGridView1->Rows->Add();
+		dataGridView1->Rows[k]->Cells[0]->Value = k;
+		dataGridView1->Rows[k]->Cells[1]->Value = x;
+		dataGridView1->Rows[k]->Cells[2]->Value = v;
+		dataGridView1->Rows[k]->Cells[3]->Value = h;
+		dataGridView1->Rows[k]->Cells[4]->Value = s;
+		dataGridView1->Rows[k]->Cells[5]->Value = c1;
+		dataGridView1->Rows[k]->Cells[6]->Value = c2;
+	}
+
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	dataGridView1->Rows->Clear();
 	GraphPane^ panel = zedGraphControl1->GraphPane;
-	panel->CurveList->Clear();
 	PointPairList^ RK5_list = gcnew ZedGraph::PointPairList();
 
 	double x = 0.0;
@@ -601,6 +646,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	double ee = Convert::ToDouble(textBox8->Text);
 	double b = Convert::ToDouble(textBox7->Text);
 	double eb = Convert::ToDouble(textBox9->Text);
+	double eu = Convert::ToDouble(textBox10->Text);
 	double v = u0;
 	double s = 0.0;
 	int c1 = 0;
@@ -613,22 +659,15 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	if (checkBox1->Checked)
 	{
-		dataGridView1->Rows->Add();
-		dataGridView1->Rows[0]->Cells[0]->Value = 0;
-		dataGridView1->Rows[0]->Cells[1]->Value = x;
-		dataGridView1->Rows[0]->Cells[2]->Value = v;
-		dataGridView1->Rows[0]->Cells[3]->Value = h;
-		dataGridView1->Rows[0]->Cells[4]->Value = s;
-		dataGridView1->Rows[0]->Cells[5]->Value = c1;
-		dataGridView1->Rows[0]->Cells[6]->Value = c2;
+		print_dataGridView(0, x, v, h, s, c1, c1);
 
 		RK5_list->Add(x, v);
-
-		for (i = 0; (i < n) && (x + h < b); i++)
+		double vn = 1.0;
+		for (i = 0; (i < n) && (x + h < b) && (vn > 0.0); i++)
 		{
 			double x2 = x + h / 2.0;
 			double v2 = RK_5(x, v, h / 2.0);
-			double vn = RK_5(x, v, h);
+			vn = RK_5(x, v, h);
 			s = (RK_5(x2, v2, h / 2.0) - vn) / 7.0;
 
 			if (ee / 16.0 > fabs(s))
@@ -645,15 +684,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				if (minh > h)
 					minh = h;
 
-				dataGridView1->Rows->Add();
-				dataGridView1->Rows[k]->Cells[0]->Value = k;
-				dataGridView1->Rows[k]->Cells[1]->Value = x;
-				dataGridView1->Rows[k]->Cells[2]->Value = v;
-				dataGridView1->Rows[k]->Cells[3]->Value = h;
-				dataGridView1->Rows[k]->Cells[4]->Value = s;
-				dataGridView1->Rows[k]->Cells[5]->Value = c1;
-				dataGridView1->Rows[k]->Cells[6]->Value = c2;
-
+				print_dataGridView(k, x, v, h, s, c1, c1);
 				RK5_list->Add(x, v);
 
 				h = h * 2.0;
@@ -666,31 +697,27 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				}
 				else
 				{
-					x = x + h;
-					v = vn;
-					k++;
+					if (vn >= 0.0)
+					{
+						x = x + h;
+						v = vn;
+						k++;
 
-					if (maxs < s)
-						maxs = s;
-					if (maxh < h)
-						maxh = h;
-					if (minh > h)
-						minh = h;
+						if (maxs < s)
+							maxs = s;
+						if (maxh < h)
+							maxh = h;
+						if (minh > h)
+							minh = h;
 
-					dataGridView1->Rows->Add();
-					dataGridView1->Rows[k]->Cells[0]->Value = k;
-					dataGridView1->Rows[k]->Cells[1]->Value = x;
-					dataGridView1->Rows[k]->Cells[2]->Value = v;
-					dataGridView1->Rows[k]->Cells[3]->Value = h;
-					dataGridView1->Rows[k]->Cells[4]->Value = s;
-					dataGridView1->Rows[k]->Cells[5]->Value = c1;
-					dataGridView1->Rows[k]->Cells[6]->Value = c2;
+						print_dataGridView(k, x, v, h, s, c1, c1);
 
-					RK5_list->Add(x, v);
+						RK5_list->Add(x, v);
+					}
 				}
 		}
 
-		for (; (i < n) && (fabs(b - x) > eb); i++)
+		while ((i < n) && (fabs(b - x) > eb) && (fabs(v) > eu))
 		{
 			if (x + h > b)
 			{
@@ -699,55 +726,45 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			}
 			else
 			{
-				v = RK_5(x, v, h);
-				x = x + h;
-				k++;
+				double vn = RK_5(x, v, h);
+				if (vn < 0.0)
+				{
+					h = h / 2;
+					c2++;
+				}
+				else
+				{
+					v = vn;
+					x = x + h;
+					k++;
 
-				if (minh > h)
-					minh = h;
+					if (minh > h)
+						minh = h;
 
-				dataGridView1->Rows->Add();
-				dataGridView1->Rows[k]->Cells[0]->Value = k;
-				dataGridView1->Rows[k]->Cells[1]->Value = x;
-				dataGridView1->Rows[k]->Cells[2]->Value = v;
-				dataGridView1->Rows[k]->Cells[3]->Value = h;
-				dataGridView1->Rows[k]->Cells[4]->Value = s;
-				dataGridView1->Rows[k]->Cells[5]->Value = c1;
-				dataGridView1->Rows[k]->Cells[6]->Value = c2;
+					print_dataGridView(k, x, v, h, s, c1, c1);
 
-				RK5_list->Add(x, v);
+					RK5_list->Add(x, v);
+				}
 			}
+			i++;
 		}
 	}
 	else
 	{
-		dataGridView1->Rows->Add();
-		dataGridView1->Rows[0]->Cells[0]->Value = 0;
-		dataGridView1->Rows[0]->Cells[1]->Value = x;
-		dataGridView1->Rows[0]->Cells[2]->Value = v;
-		dataGridView1->Rows[0]->Cells[3]->Value = h;
-		dataGridView1->Rows[0]->Cells[4]->Value = s;
-		dataGridView1->Rows[0]->Cells[5]->Value = c1;
-		dataGridView1->Rows[0]->Cells[6]->Value = c2;
+		print_dataGridView(0, x, v, h, s, c1, c1);
 
 		RK5_list->Add(x, v);
 
-		for (i = 0; (i < n) && (x + h < b); i++)
+		for (i = 0; (i < n) && (x + h < b) && (v > 0.0); i++)
 		{
 			v = RK_5(x, v, h);
 			x = x + h;
 			k++;
 
-			dataGridView1->Rows->Add();
-			dataGridView1->Rows[k]->Cells[0]->Value = k;
-			dataGridView1->Rows[k]->Cells[1]->Value = x;
-			dataGridView1->Rows[k]->Cells[2]->Value = v;
-			dataGridView1->Rows[k]->Cells[3]->Value = h;
-			dataGridView1->Rows[k]->Cells[4]->Value = s;
-			dataGridView1->Rows[k]->Cells[5]->Value = c1;
-			dataGridView1->Rows[k]->Cells[6]->Value = c2;
+			print_dataGridView(k, x, v, h, s, c1, c1);
 
 			RK5_list->Add(x, v);
+			i++;
 		}
 	}
 	
@@ -763,6 +780,10 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	zedGraphControl1->AxisChange();
 	zedGraphControl1->Invalidate();
 }
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	zedGraphControl1->GraphPane->CurveList->Clear();
+	zedGraphControl1->AxisChange();
+	zedGraphControl1->Invalidate();
+}
 };
 }
-
